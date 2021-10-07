@@ -1,2 +1,178 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+double val = 0;       // variable to store the value coming from the Potentiometer
+int count=0;
+double lastD;
+void setup() {
+  
+  pinMode(5,OUTPUT); // 5 - 5 (A)
+  pinMode(3,OUTPUT); //input2 - D3 (B)
+  pinMode(2,OUTPUT); //input3 - D4	(C)
+  pinMode(4,OUTPUT); // 4 - 4 (D)
+  
+  pinMode(9,OUTPUT); // 9 - 9 (A)
+  pinMode(6,OUTPUT); //input6 - D6 (B)
+  pinMode(7,OUTPUT); //input7 - D7	(C)
+  pinMode(8,OUTPUT); // 8 - 8 (D)
+ 
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  val = analogRead(A0);    // read the value 0 - 1023 -> 0 - 99 1023/100 =10.23 
+
+  //this controls the 1s or the second digit
+  count = val/10.23;  //the number that will display 
+  lastD = count % 10; //find the remainder of count which is the first digit
+  if (lastD == 0)
+  {
+    digitalWrite(9, LOW);
+    digitalWrite(6, LOW);
+    digitalWrite(7, LOW);
+    digitalWrite(8, LOW);
+  }
+  if (lastD == 1)
+  {
+    digitalWrite(9, HIGH); //1
+    digitalWrite(6, LOW);//2  
+    digitalWrite(7, LOW);//4
+    digitalWrite(8, LOW);//8
+  }
+  if (lastD == 2)
+  {
+    digitalWrite(9, LOW);
+    digitalWrite(6, HIGH);  
+    digitalWrite(7, LOW);
+    digitalWrite(8, LOW);
+  }
+  if (lastD == 3)
+  {
+    digitalWrite(9, HIGH); //1
+    digitalWrite(6, HIGH);//2  
+    digitalWrite(7, LOW);//4
+    digitalWrite(8, LOW);//8
+  }
+  if (lastD == 4)
+  {
+    digitalWrite(9, LOW);
+    digitalWrite(6, LOW);  
+    digitalWrite(7, HIGH);
+    digitalWrite(8, LOW);
+  }
+  if (lastD == 5)
+  {
+    digitalWrite(9, HIGH); //1
+    digitalWrite(6, LOW);//2  
+    digitalWrite(7, HIGH);//4
+    digitalWrite(8, LOW);//8
+  }
+  if (lastD == 6)
+  {
+    digitalWrite(9, LOW); //1
+    digitalWrite(6, HIGH);//2  
+    digitalWrite(7, HIGH);//4
+    digitalWrite(8, LOW);//8
+  }
+  if (lastD == 7)
+  {
+    digitalWrite(9, HIGH); //1
+    digitalWrite(6, HIGH);//2  
+    digitalWrite(7, HIGH);//4
+    digitalWrite(8, LOW);//8
+  }
+  if (lastD == 8)
+  {
+    digitalWrite(9, LOW); //1
+    digitalWrite(6, LOW);//2  
+    digitalWrite(7, LOW);//4
+    digitalWrite(8, HIGH);//8
+  }
+  if (lastD == 9)
+  {
+    digitalWrite(9, HIGH); //1
+    digitalWrite(6, LOW);//2  
+    digitalWrite(7, LOW);//4
+    digitalWrite(8, HIGH);//8
+  }
+  
+  
+// this controls the 10ths or the first digit
+  if (val >= 0 && val <= 102.3) //0
+  {
+    digitalWrite(3, LOW);
+    digitalWrite(2, LOW);
+    digitalWrite(4, LOW);
+    digitalWrite(5, LOW);
+  }
+if (val >= 102.3 && val <= 204.6) //1
+  {
+  	digitalWrite(5, HIGH); //1
+    digitalWrite(3, LOW);//2  
+    digitalWrite(2, LOW);//4
+    digitalWrite(4, LOW);//8
+}
+if (val >= 204.6 && val <= 306.9) //2
+  {
+    digitalWrite(5, LOW);
+    digitalWrite(3, HIGH);  
+    digitalWrite(2, LOW);
+    digitalWrite(4, LOW);
+   
+}
+ if (val >= 306.9 && val <= 409.2) //3
+  {
+    digitalWrite(5, HIGH); //1
+    digitalWrite(3, HIGH);//2  
+    digitalWrite(2, LOW);//4
+    digitalWrite(4, LOW);//8
+    
+ }   
+if (val >= 409.2 && val <= 511.5) //4
+  {
+    digitalWrite(5, LOW);
+    digitalWrite(3, LOW);  
+    digitalWrite(2, HIGH);
+    digitalWrite(4, LOW);
+}
+if (val >= 511.5&& val <= 613.8) //5
+  {
+    digitalWrite(5, HIGH); //1
+    digitalWrite(3, LOW);//2  
+    digitalWrite(2, HIGH);//4
+    digitalWrite(4, LOW);//8
+  
+}
+if (val >= 613.8 && val <= 716.1) //6
+  {
+    digitalWrite(5, LOW); //1
+    digitalWrite(3, HIGH);//2  
+    digitalWrite(2, HIGH);//4
+    digitalWrite(4, LOW);//8
+   
+}
+if (val >= 716.1 && val <= 818.4) //7
+  {
+    digitalWrite(5, HIGH); //1
+    digitalWrite(3, HIGH);//2  
+    digitalWrite(2, HIGH);//4
+    digitalWrite(4, LOW);//8
+   
+}
+if (val >= 818.4 && val <= 920.7) //8
+  {
+    digitalWrite(5, LOW); //1
+    digitalWrite(3, LOW);//2  
+    digitalWrite(2, LOW);//4
+    digitalWrite(4, HIGH);//8
+
+}
+if (val >= 920.7 && val <= 1023) //9
+  {
+    digitalWrite(5, HIGH); //1
+    digitalWrite(3, LOW);//2  
+    digitalWrite(2, LOW);//4
+    digitalWrite(4, HIGH);//8
+ 
+}
+  delay(200);
+  
+}
+
